@@ -11,8 +11,7 @@ The project utilizes the [TMDb API](https://www.themoviedb.org/).
 A similar now-playing app has been developed using Angular 1. See what makes this app different by checking it out [here](https://github.com/in-the-keyhole/angular-now-playing). 
 
 ### Comparing to Angular 2
-A similar now-playing app has been developed using Angular 2. See what makes this app differnt by checking it out [here]
-(https://github.com/in-the-keyhole/angular2-now-playing)
+A similar now-playing app has been developed using Angular 2. See what makes this app differnt by checking it out [here](https://github.com/in-the-keyhole/angular2-now-playing).
 
 ### Comparing to React
 A similar now-playing app has been developed using React. See what makes this app different by checking it out [here](https://github.com/in-the-keyhole/khs-react-course). 
