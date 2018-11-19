@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Movies from './views/Movies.vue'
 import Movie from './views/Movie.vue'
-//import Login from './views/Login.vue'
+import Login from './views/Login.vue'
 
 Vue.use(Router)
 
@@ -24,16 +24,10 @@ export default new Router({
         component: Movie,
         props: true
     },
-    /*
     {
         path: '/login',
         name: 'login',
-        component: Movie,
-        props: true
-    },
-  */
-
-
-
+        component: Login
+    }
   ]
 })
