@@ -36,7 +36,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .logo {
     position: absolute;
     top: 10px;
