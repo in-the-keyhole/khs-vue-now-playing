@@ -5,7 +5,7 @@
     <ul>
         <li v-for="movie in filteredList" :key="movie.id">
             <a :href="'/#/movie/' + movie.id"><img :src="'http://localhost:8080/images/posters' + movie.poster_path"></a>           
-          
+            <Rating></Rating>
         </li>
     </ul>
 </div>
@@ -13,8 +13,12 @@
 
 <script>
 import {HTTP} from '../http-common';
+import Rating from '../components/Rating.vue';
 
 export default {
+    components:{
+        Rating
+    },
   data() {
     return {
       search: '',

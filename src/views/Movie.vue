@@ -1,6 +1,5 @@
 <template>
     <div class="movie-detail">
-
     <h3>{{movie.overview}}</h3>
     <a href="/#/movies"><span class="close"></span></a>
     <img :src="'http://localhost:8080/images/backdrops' + movie.backdrop_path"/>
