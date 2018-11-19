@@ -34,7 +34,7 @@ export default {
         direction: rtl;
         cursor: pointer;
     }
-    .star .fa-star {
+    .star .fas {
         color: yellow;
     }
 
