@@ -1,6 +1,7 @@
 <template>
     <div class="movie-container">
     <h2>Now Playing</h2>
+    <button v-on:click="logout">Logout</button>
     <input type="text"  v-model="search" placeholder="Search by title.."/>
     <ul>
         <li v-for="movie in filteredList" :key="movie.id">
@@ -19,14 +20,20 @@ export default {
     components:{
         Rating
     },
-  data() {
-    return {
-      search: '',
-      movies: [],
-      errors: [],    
-    }
-  },
 
+    data() {
+        return {
+        search: '',
+        movies: [],
+        errors: [],    
+        }
+    },
+
+    methods: {
+        logout: function (event) {
+            console.log('logout ', event);
+        }
+    },
   computed: {
     filteredList() {
       return this.movies.filter(movie => {
