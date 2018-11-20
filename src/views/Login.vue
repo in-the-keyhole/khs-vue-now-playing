@@ -5,18 +5,18 @@
         <div class="login-content">
             <form v-on:submit.prevent="onSubmit">
                 <div class="form-group" >
-                    <span class="errorMessage"></span>
+                    <span class="errorMessage">{{error}}</span>
                 </div>
                 <div class="form-group">
                     <label for="username">Username</label>
                     <input v-model="username" type="text" id="username" class="form-control" formControlName="username" required>
-                    <div  class="input-error"></div>
+                    <div class="input-error"></div>
                 </div>
 
                 <div class="form-group">
                     <label for="password">Password</label>
                     <input v-model="password" type="password" id="password" class="form-control" formControlName="password" required>
-                    <div  class="input-error">
+                    <div class="input-error">
                      
                     </div>
                 </div>
@@ -37,24 +37,26 @@ export default {
         return {
             username: '',
             password: '',
-            errors: [],    
+            error: '',    
             }
     },
 
     methods: {
         onSubmit: function () {
+            this.error = '';
             const params = {
                 username: this.username,
                 password: this.password
             };
 
             HTTP.post('authenticate', params)
-                .then(response => {
-                    console.log(response);
+                .then(res => {
+                    console.log(res);
                     this.$router.push('movies');
                 })
-                .catch(e => {
-                    this.errors.push(e)
+                .catch(err => {
+                    console.log(err);
+                     this.error = 'An invalid username or password was entered.'
                 }) 
         }
     },
@@ -89,8 +91,6 @@ h1 {
     font-size: 1em;
 }
 
-.login-form {
-}
 
 label {
     display: block;
