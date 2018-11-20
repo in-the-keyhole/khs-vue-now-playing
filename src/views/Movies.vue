@@ -30,8 +30,11 @@ export default {
     },
 
     methods: {
-        logout: function (event) {
-            console.log('logout ', event);
+        logout: function () {
+            this.$router.push('login');
+
+            //TODO invalidate session
+            
         }
     },
   computed: {
