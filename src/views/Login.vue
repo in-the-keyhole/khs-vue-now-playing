@@ -74,7 +74,7 @@ export default {
 .login-body {
     display: flex;
     width: 100%;
-    height: 100%;
+    height: -webkit-fill-available;
     color: black;
     background-image: url(/images/backdrops/login-backdrop.jpg);
     background-size: cover;
