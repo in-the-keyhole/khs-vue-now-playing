@@ -14,7 +14,7 @@
 
 <script>
 import {HTTP} from '../http-common';
-import Rating from '../components/Rating.vue';
+import Rating from './Rating.vue';
 
 export default {
     components:{
