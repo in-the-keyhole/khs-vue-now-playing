@@ -3,19 +3,19 @@
     <img class="logo" :src="'/images/logo.gif'"/>
     <div class="login-body">
         <div class="login-content">
-            <form>
+            <form v-on:submit.prevent="onSubmit">
                 <div class="form-group" >
                     <span class="errorMessage"></span>
                 </div>
                 <div class="form-group">
                     <label for="username">Username</label>
-                    <input type="text" id="username" class="form-control" formControlName="username" required>
+                    <input v-model="username" type="text" id="username" class="form-control" formControlName="username" required>
                     <div  class="input-error"></div>
                 </div>
 
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" id="password" class="form-control" formControlName="password" required>
+                    <input v-model="password" type="password" id="password" class="form-control" formControlName="password" required>
                     <div  class="input-error">
                      
                     </div>
@@ -29,10 +29,35 @@
 </template>
 
 <script>
+import {HTTP} from '../http-common';
 
 
 export default {
+    data() {
+        return {
+            username: '',
+            password: '',
+            errors: [],    
+            }
+    },
 
+    methods: {
+        onSubmit: function () {
+            const params = {
+                username: this.username,
+                password: this.password
+            };
+
+            HTTP.post('authenticate', params)
+                .then(response => {
+                    console.log(response);
+                    this.$router.push('movies');
+                })
+                .catch(e => {
+                    this.errors.push(e)
+                }) 
+        }
+    },
 }
 </script>
 
