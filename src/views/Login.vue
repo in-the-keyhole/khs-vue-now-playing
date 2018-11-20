@@ -9,13 +9,13 @@
                 </div>
                 <div class="form-group">
                     <label for="username">Username</label>
-                    <input v-model="username" type="text" id="username" class="form-control" formControlName="username" required>
+                    <input v-model="username" type="text" autocomplete="username" class="form-control" formControlName="username" required>
                     <div class="input-error"></div>
                 </div>
 
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input v-model="password" type="password" id="password" class="form-control" formControlName="password" required>
+                    <input v-model="password" type="password" autocomplete="password" class="form-control" formControlName="password" required>
                     <div class="input-error">
                      
                     </div>
@@ -52,7 +52,7 @@ export default {
             HTTP.post('authenticate', params)
                 .then(res => {
                     console.log(res);
-                    this.$router.push('movies');
+                    this.$router.push('/');
                 })
                 .catch(err => {
                     console.log(err);
