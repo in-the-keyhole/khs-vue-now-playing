@@ -10,8 +10,7 @@ import store from './store';
 export default {
 
   created() {
-    store.dispatch('fetchMovies');
-
+    store.dispatch('fetchMovieList');// fetch movies on init
   }
 }
 </script>

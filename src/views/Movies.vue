@@ -6,7 +6,10 @@
     <ul>
         <li v-for="movie in filteredList" :key="movie.id">
             <a :href="'/#/movie/' + movie.id"><img :src="'/images/posters' + movie.poster_path"></a>           
-            <Rating></Rating>
+            <Rating 
+                v-bind:id="movie.id"
+                v-bind:stars="movie.stars"
+            ></Rating>
         </li>
     </ul>
 </div>

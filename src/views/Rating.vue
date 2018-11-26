@@ -2,24 +2,29 @@
 
 <template>
     <span class="rating">
-        <span v-on:click="stars = 5" class="star"><i v-bind:class="{ fas: (stars > 4) }" class="far fa-star fa-lg"></i></span>
-        <span v-on:click="stars = 4" class="star"><i v-bind:class="{ fas: (stars > 3) }" class="far fa-star fa-lg "></i></span>
-        <span v-on:click="stars = 3" class="star"><i v-bind:class="{ fas: (stars > 2) }" class="far fa-star fa-lg "></i></span>
-        <span v-on:click="stars = 2" class="star"><i v-bind:class="{ fas: (stars > 1) }" class="far fa-star fa-lg "></i></span>
-        <span v-on:click="stars = 1" class="star"><i v-bind:class="{ fas: (stars > 0) }" class="far fa-star fa-lg "></i></span>
+        <span v-on:click="rate(5)" class="star"><i v-bind:class="{ fas: (stars > 4) }" class="far fa-star fa-lg"></i></span>
+        <span v-on:click="rate(4)" class="star"><i v-bind:class="{ fas: (stars > 3) }" class="far fa-star fa-lg "></i></span>
+        <span v-on:click="rate(3)" class="star"><i v-bind:class="{ fas: (stars > 2) }" class="far fa-star fa-lg "></i></span>
+        <span v-on:click="rate(2)" class="star"><i v-bind:class="{ fas: (stars > 1) }" class="far fa-star fa-lg "></i></span>
+        <span v-on:click="rate(1)" class="star"><i v-bind:class="{ fas: (stars > 0) }" class="far fa-star fa-lg "></i></span>
     </span>
 </template>
 
 
 <script>
+    import store from '../store';
     export default {
         name:"Rating",
-
-        data: function () {
-            return {
-            stars: 0
+        props: ['id', 'stars'],
+        methods: {
+            rate: function (rating) {
+                store.commit('RATE_MOVIES', {
+                    id: this.id,
+                    stars: rating
+                })                
             }
         }
+ 
     }
 </script>
 
