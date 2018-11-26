@@ -5,3 +5,13 @@
   </div>
 </template>
 
+<script>
+import store from './store';
+export default {
+
+  created() {
+    store.dispatch('fetchMovies');
+
+  }
+}
+</script>

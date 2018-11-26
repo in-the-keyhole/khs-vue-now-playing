@@ -5,7 +5,7 @@
     <input type="text"  v-model="search" placeholder="Search by title.."/>
     <ul>
         <li v-for="movie in filteredList" :key="movie.id">
-            <a :href="'/#/movie/' + movie.id"><img :src="'http://localhost:8080/images/posters' + movie.poster_path"></a>           
+            <a :href="'/#/movie/' + movie.id"><img :src="'/images/posters' + movie.poster_path"></a>           
             <Rating></Rating>
         </li>
     </ul>
@@ -13,9 +13,8 @@
 </template>
 
 <script>
-import {HTTP} from '../http-common';
 import Rating from './Rating.vue';
-
+import store from '../store';
 export default {
     components:{
         Rating
@@ -24,7 +23,6 @@ export default {
     data() {
         return {
         search: '',
-        movies: [],
         errors: [],    
         }
     },
@@ -39,20 +37,10 @@ export default {
     },
   computed: {
     filteredList() {
-      return this.movies.filter(movie => {
+      return store.state.movies.filter(movie => {
         return movie.original_title.toLowerCase().includes(this.search.toLowerCase())
       })
     }
-  },
-
-  created() {
-    HTTP.get(`nowplaying`)
-    .then(response => {
-      this.movies = response.data.results      
-    })
-    .catch(e => {
-      this.errors.push(e)
-    })
   }
 }
 </script>
