@@ -1,3 +1,4 @@
+import gql from 'graphql-tag'
 <template>
     <div class="movie-container">
     <h2>Now Playing</h2>
@@ -15,65 +16,16 @@
 </div>
 </template>
 
-<script>
-//not sure if the template above still holds after the 3x swap
-//think this needs to be replaced with the call itself
-import Rating from './Rating.vue';
-import store from '../store';
-import gql from "graphql-tag";
-export default {
-    components:{
-        Rating
-    },
+<script setup lang="ts">
+import type { Movie } from "@/models";
+import { useQuery } from "@vue/apollo-composable";
+import { computed } from "vue";
+import { NOW_PLAYING } from "../graphql-operations";
+const nowPlayingQuery = useQuery(NOW_PLAYING);
 
-    data() {
-        return {
-        search: '',
-        errors: [],    
-        }
-    },
-
-    methods: {
-      apollo : ({
-        url: 'https://movies.keyhole.institute/graphql',
-        method: 'get',
-        data: {
-
-          return:{
-            services: [],
-          },
-          query: gql `query movie($id: ID!) {
-        movie(id: $id) {
-          id
-          title
-          overview
-          posterPath
-          backdropPathW1280
-          }
-      }
-      `
-        }
-      })
-
-          .then(response => {
-            return{
-              response
-            }
-            //this.movies = response.data
-          })
-        }
-    },
-
-/*
-//may need to be swapped out
-  computed: {
-    filteredList() {
-      return store.state.movies.filter(movie => {
-        return movie.original_title.toLowerCase().includes(this.search.toLowerCase())
-      })
-    }
-  }*/
-}
+const movies = computed<Movie[]>(
+    () => nowPlayingQuery.result?.value?.nowPlaying ?? []
+);
 </script>
 
 <style>
