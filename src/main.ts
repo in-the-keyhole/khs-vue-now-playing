@@ -1,14 +1,9 @@
 import { createApp, provide, h } from 'vue'
-import { DefaultApolloClient } from '@vue/apollo-composable'
-import { ApolloClient, InMemoryCache } from '@apollo/client/core'
-import App from './App.vue'
-import router from './router'
-const cache = new InMemoryCache()
+import App from '@/App.vue'
+import router from '@/router'
 
-const apolloClient = new ApolloClient({
-    cache,
-    uri: 'https://movies.keyhole.institute/graphql', //used for production
-})
+import { DefaultApolloClient } from '@vue/apollo-composable'
+import { apolloClient } from "./apollo-client";
 
 const app = createApp({
     setup() {
