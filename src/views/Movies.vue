@@ -1,23 +1,27 @@
 <script setup lang="ts">
 import type { Movie } from "@/models";
 import { useQuery } from "@vue/apollo-composable";
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { NOW_PLAYING } from "@/graphql-operations";
 import MoviePoster from "@/components/MoviePoster.vue";
 const nowPlayingQuery = useQuery(NOW_PLAYING);
 
-const movies = computed<Movie[]>(
-  () => nowPlayingQuery.result?.value?.nowPlaying ?? []
-);
+const filteredMovies = computed<Movie[]>(() => {
+  return nowPlayingQuery.result?.value?.nowPlaying.filter((movie: Movie) => {
+    return movie.title.toLowerCase().includes(searchFilter.value.toLowerCase());
+  });
+});
+
+const searchFilter = ref("");
 </script>
 
 <template>
   <div class="movie-container">
     <h2>Now Playing</h2>
-    <!-- <input type="text" v-model="search" placeholder="Search by title.." /> -->
+    <input type="text" v-model="searchFilter" placeholder="Search by title.." />
     <ul>
       <MoviePoster
-        v-for="movie in movies"
+        v-for="movie in filteredMovies"
         :id="movie.id"
         :posterPath="movie.posterPath"
       />
