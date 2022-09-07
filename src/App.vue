@@ -1,70 +1,31 @@
 
 <script lang="ts">
 
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
 
-
-
-import gql from 'graphql-tag'
-import { useQuery } from '@vue/apollo-composable'
-
-
-
-//used for testing
-const CHARACTERS_QUERY = gql`
-  query Characters {
-    characters {
-      results {
-        id
-        name
-        image
-      }
-    }
-  }
-`
-
-const movieQuery = gql
-    `movie($id: ID!) {
-        movie(id: $id) {
-          id
-          title
-          overview
-          posterPath
-          backdropPathW1280
-          }
-      }`
-const nowPlaying = gql
-    `query nowPlaying { nowPlaying {
-        id
-        title
-        overview
-        posterPath
-        posterPathW342
-        }
-      }`
-
-export default {
-  name: 'App',
-  setup () {//needs update for now-playing q
-    const { result, loading, error } = useQuery(CHARACTERS_QUERY);
-    return {
-      result,
-      loading,
-      error
-    }
-  }
-}
 
 </script>
-
 <template>
-  <p v-if="error">Something went wrong...</p>
-  <p v-if="loading">Loading...</p>
-  <p v-else v-for="character in result.characters.results" :key="character.id">
-    {{ character.name }}
-  </p>
-  <div></div>
+  <header>
+    <img
+        alt="Vue logo"
+        class="logo"
+        src="@/assets/logo.svg"
+        width="125"
+        height="125"
+    />
+
+    <div class="wrapper">
+      <HelloWorld msg="You did it!" />
+
+      <nav>
+        <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/about">About</RouterLink>
+        <RouterLink to="/nowPlaying">NowPlaying</RouterLink>
+      </nav>
+    </div>
+  </header>
+
+  <RouterView />
 </template>
 
 <style scoped>

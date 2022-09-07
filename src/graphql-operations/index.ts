@@ -11,8 +11,8 @@ export const NOW_PLAYING = gql`
   }
 `;
 
-const MOVIE_QUERY = gql
-    `movie($id: ID!) {
+export const MOVIE_QUERY = gql
+    `query movie($id: ID!) {
         movie(id: $id) {
           id
           title

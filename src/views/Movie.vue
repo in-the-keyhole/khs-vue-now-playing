@@ -7,47 +7,15 @@
 </template>
 
 <script>
-//import {HTTP} from '../http-common';
-//import axios from "axios";
-import gql from 'graphql-tag'
+/*import type { Movie } from "@/models";
+import { useQuery } from "@vue/apollo-composable";
+import { computed } from "vue";
+import { MOVIE_QUERY } from "../graphql-operations";
+const movieSearchQuery = useQuery(MOVIE_QUERY);
 
-
-export default {
-  props: ['id'],
-  data() {
-    return {
-      movie: {},
-      errors: []
-    }
-  },
-  created() {
-
-    apollo : ({
-      url: 'https://movies.keyhole.institute/graphql',
-      method: 'get',
-      data: {
-        query: gql `query movie($id: ID!) {
-        movie(id: $id) {
-          id
-          title
-          overview
-          posterPath
-          backdropPathW1280
-          }
-      }
-      `
-      }
-    })
-
-
-        .then(response => {
-          this.movie = response.data
-        })
-        .catch(e => {
-          this.errors.push(e)
-        })
-  }
-}
+const movie = computed<Movie>(
+    () => movieSearchQuery.result?.value?.movie ?? []
+);*/
 </script>
 
 <style>

@@ -12,21 +12,14 @@
 
 
 <script>
-//needs the /store to work correctly
-    import store from '../store';
-    export default {
-        name:"Rating",
-        props: ['id', 'stars'],
-        methods: {
-            rate: function (rating) {
-                store.commit('RATE_MOVIES', {
-                    id: this.id,
-                    stars: rating
-                })                
-            }
-        }
- 
-    }
+import type { Movie } from "@/models";
+import { useQuery } from "@vue/apollo-composable";
+import { computed } from "vue";
+const nowPlayingQuery = useQuery(NOW_PLAYING);
+
+const movies = computed<Movie[]>(
+    () => nowPlayingQuery.result?.value?.nowPlaying ?? []
+);
 </script>
 
 
