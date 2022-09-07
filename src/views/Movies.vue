@@ -18,7 +18,11 @@ const searchFilter = ref("");
 <template>
   <div class="movie-container">
     <h2>Now Playing</h2>
-    <input type="text" v-model="searchFilter" placeholder="Search by title.." />
+    <input
+      type="text"
+      v-model="searchFilter"
+      placeholder="Filter by title..."
+    />
     <ul>
       <MoviePoster
         v-for="movie in filteredMovies"
