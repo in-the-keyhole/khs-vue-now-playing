@@ -9,8 +9,9 @@ const apolloClient = new ApolloClient({
     cache,
     uri: 'https://movies.keyhole.institute/graphql', //used for production
 })
+
 const app = createApp({
-    setup () {
+    setup() {
         provide(DefaultApolloClient, apolloClient)
     },
 
