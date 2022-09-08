@@ -1,7 +1,8 @@
-<script lang="ts">
-export default {
-  props: ["id", "posterPath"],
-};
+<script setup lang="ts">
+const props = defineProps({
+  id: Number,
+  posterPath: String,
+});
 </script>
 
 <template>
