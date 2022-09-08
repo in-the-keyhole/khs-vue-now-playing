@@ -3,10 +3,10 @@ import type { Movie } from "@/models";
 import { useQuery } from "@vue/apollo-composable";
 import { computed } from "vue";
 import { MOVIE_QUERY } from "@/graphql-operations";
-import { useRoute } from "vue-router";
-
-const route = useRoute();
-const movieSearchQuery = useQuery(MOVIE_QUERY, { id: route.params.id });
+const props = defineProps({
+  id: Number,
+});
+const movieSearchQuery = useQuery(MOVIE_QUERY, { id: props.id });
 
 const movie = computed<Movie>(
   () => movieSearchQuery.result?.value?.movie ?? []
