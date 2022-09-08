@@ -5,38 +5,35 @@
 
 </script>
 <template>
-  <header>
-    <img
-        alt="Vue logo"
-        class="logo"
-        src="@/assets/logo.svg"
-        width="125"
-        height="125"
-    />
+  <h2>
 
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
 
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-        <RouterLink to="/nowPlaying">NowPlaying</RouterLink>
-      </nav>
     </div>
-  </header>
+  </h2>
 
   <RouterView />
+  <body/>
 </template>
 
 <style scoped>
 header {
   line-height: 1.5;
   max-height: 100vh;
+
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+h2 {
+  font-size: 1.2em;
+  text-transform: uppercase;
+
+
 }
 
 nav {
@@ -71,9 +68,6 @@ nav a:first-of-type {
     padding-right: calc(var(--section-gap) / 2);
   }
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
 
   header .wrapper {
     display: flex;
