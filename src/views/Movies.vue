@@ -3,37 +3,38 @@ import gql from 'graphql-tag'
 <script setup lang="ts">
 import type { Movie } from "@/models";
 import { useQuery } from "@vue/apollo-composable";
-import { computed } from "vue";
+import { computed , ref} from "vue";
 import { NOW_PLAYING } from "../graphql-operations";
 import MoviePoster from "@/views/MoviePoster.vue";
 const nowPlayingQuery = useQuery(NOW_PLAYING);
-
+/*
 const movies = computed<Movie[]>(
     () => nowPlayingQuery.result?.value?.nowPlaying ?? []
 );
-//const posters = new MoviePoster[]
+*/
+
+const search = ref("");
+
+const filtered = computed<Movie[]>(() => {
+  return nowPlayingQuery.result?.value?.nowPlaying.filter((movie: Movie) => {
+    return movie.title.toLowerCase().includes(search.value.toLowerCase());
+  });
+});
 
 </script>
 
 <template>
     <div class="movie-container" >
-    <h2>Now Playing
-      <div style="float: right;">
-        <button v-on:click="logout">Logout</button>
-        <input type="text"  v-model="search" placeholder="Search by title.."/>
-      </div>
-    </h2>
-
-      <movie-container>
-        <div class="poster_list">
-            <MoviePoster v-for="movie in movies" :posterPath="movie.posterPath" />
-        </div>
-      </movie-container>
-</div>
+      <h2>Now Playing</h2>
+        <input type="text"  v-model="search" placeholder="Filter by title.."/>
+        <ul>
+            <MoviePoster v-for="movie in filtered" :posterPath="movie.posterPath" :id="movie.id" />
+        </ul>
+    </div>
 </template>
 
 
-<style>
+<style scoped>
 
 .movie-container ul {
   padding: 0;
@@ -80,27 +81,6 @@ const movies = computed<Movie[]>(
   border: 1px solid rgb(238, 238, 238);
 }
 
-.movie {
-  padding: 5px;
-  margin-top: 10px;
-
-  font-weight: bold;
-  text-align: center;
-  cursor: pointer;
-}
-
-.movie img {
-  display: block;
-}
-
-.movie-detail {
-  position: relative;
-}
-
-.movie-header {
-  text-align: left;
-}
-
 .movie-header img {
   width: 30%;
 }
@@ -128,5 +108,22 @@ const movies = computed<Movie[]>(
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 2em;
   cursor: pointer;
+}
+
+div.movie-container > img {
+  width: 375px;
+}
+
+div.movie-container:hover {
+  cursor: pointer;
+}
+
+div.MoviePoster {
+  transition: all .2s ease-in-out;
+}
+
+div.MoviePoster :hover {
+  transform: scale(1.25);
+  transform-origin: top center;
 }
 </style>

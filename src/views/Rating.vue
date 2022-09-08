@@ -1,28 +1,23 @@
 
 
-<template>
-    <span class="rating">
-        <span v-on:click="rate(5)" class="star"><i v-bind:class="{ fas: (stars > 4) }" class="far fa-star fa-lg"></i></span>
-        <span v-on:click="rate(4)" class="star"><i v-bind:class="{ fas: (stars > 3) }" class="far fa-star fa-lg "></i></span>
-        <span v-on:click="rate(3)" class="star"><i v-bind:class="{ fas: (stars > 2) }" class="far fa-star fa-lg "></i></span>
-        <span v-on:click="rate(2)" class="star"><i v-bind:class="{ fas: (stars > 1) }" class="far fa-star fa-lg "></i></span>
-        <span v-on:click="rate(1)" class="star"><i v-bind:class="{ fas: (stars > 0) }" class="far fa-star fa-lg "></i></span>
-    </span>
-</template>
+
 
 
 <script>
 import type { Movie } from "@/models";
 import { useQuery } from "@vue/apollo-composable";
 import { computed } from "vue";
-const nowPlayingQuery = useQuery(NOW_PLAYING);
 
-const movies = computed<Movie[]>(
-    () => nowPlayingQuery.result?.value?.nowPlaying ?? []
-);
+
+const props = defineProps({
+  id : {type: Number, required : true}
+})
+
 </script>
 
+<template>
 
+</template>
 <style>
     .rating {
         position: absolute;
@@ -33,12 +28,5 @@ const movies = computed<Movie[]>(
         direction: rtl;
         cursor: pointer;
     }
-    .star .fas {
-        color: yellow;
-    }
 
-    .star:hover,
-    .star:hover ~ .star {
-        color: yellow;
-    }
 </style>

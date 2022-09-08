@@ -3,5 +3,5 @@ export interface Movie {
     title: string;
     overview: string;
     posterPath: string;
-    backdropPath: string;
+    backdropPathW1280: string;
 }

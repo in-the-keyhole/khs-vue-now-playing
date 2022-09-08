@@ -11,12 +11,16 @@
 
     </div>
   </h2>
-
+  <!--<nav>
+    <RouterLink to="/">Home</RouterLink>
+    <RouterLink to="/about">About</RouterLink>
+    <RouterLink to="/nowPlaying">NowPlaying</RouterLink>
+  </nav>-->
   <RouterView />
-  <body/>
+
 </template>
 
-<style scoped>
+<style>
 header {
   line-height: 1.5;
   max-height: 100vh;
