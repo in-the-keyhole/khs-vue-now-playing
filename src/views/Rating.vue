@@ -29,7 +29,7 @@ const movie = computed<Movie>(
     <div class="outer_ring">
       <div class="user_score_chart" :data-percent="Math.floor(movie.voteAverage*10)" data-track-color="#204529" data-bar-color="#21d07a">
         <div class="percent">
-          <span class="icon icon-r74">
+          <span class="icon">
              <h3>{{Math.floor(movie.voteAverage*10)}}</h3>
 
           </span>
@@ -56,7 +56,7 @@ const movie = computed<Movie>(
       z-index: 9;
       width: 68px;
       height: 68px;
-      display: inline-block;
+      display: marker;
       transition: transform .2s;
       transform: scale(1);
     }
@@ -67,7 +67,8 @@ const movie = computed<Movie>(
       height: 68px;
       border-radius: 50%;
       padding: 4px;
-      background-color: #081c22;
+      background-color: limegreen;
+      border-color: #b3b3b3;
     }
 
     div.consensus .user_score_chart {
@@ -81,15 +82,18 @@ const movie = computed<Movie>(
     div.consensus .user_score_chart .percent {
       width: 100%;
       height: 100%;
-      z-index: 3;
+      z-index: 8;
       display: flex;
       align-items: center;
       justify-content: center;
       color: #fff;
     }
 
-    [class^="icon-"], [class*=" icon-"] {
-      font-family: 'Consensus' !important;
+
+
+
+    div.consensus .user_score_chart .percent .icon {
+      font-family: Consensus !important;
       speak: none;
       font-style: normal;
       font-weight: normal;
@@ -98,14 +102,11 @@ const movie = computed<Movie>(
       line-height: 1;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-    }
-    .icon-r74:before {
-      :content: data-percent;
+      color: #fff;
+      font-size: 2em;
     }
 
-    div.consensus .user_score_chart .percent .icon {
-      color: #fff;
-    }
+
 
 
 
