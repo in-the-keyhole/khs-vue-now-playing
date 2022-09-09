@@ -4,4 +4,5 @@ export interface Movie {
     overview: string;
     posterPath: string;
     backdropPathW1280: string;
+    voteAverage: number;
 }

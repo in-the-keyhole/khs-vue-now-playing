@@ -11,6 +11,7 @@ const props = defineProps({
 
   <RouterLink :to="'/movie/' + id">
     <img className="movie-poster" :src="posterPath"/>
+    <Rating :id="props.id" />
   </RouterLink>
 </template>
 

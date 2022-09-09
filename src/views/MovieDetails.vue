@@ -10,12 +10,9 @@ import { computed } from "vue";
 import { MOVIE_QUERY } from "../graphql-operations";
 import {useRoute} from "vue-router";
 
-const props = defineProps({
-  id : {type: Number, required : true}
-})
 
 const route = useRoute();
-const movieSearchQuery = useQuery(MOVIE_QUERY, {id: props.id});
+const movieSearchQuery = useQuery(MOVIE_QUERY, {id: route.params.id});
 
 const movie = computed<Movie>(
     () => movieSearchQuery.result?.value?.movie ?? []

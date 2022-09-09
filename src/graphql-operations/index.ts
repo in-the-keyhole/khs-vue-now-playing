@@ -19,5 +19,6 @@ export const MOVIE_QUERY = gql
           overview
           posterPath
           backdropPathW1280
+          voteAverage
           }
       }`;
