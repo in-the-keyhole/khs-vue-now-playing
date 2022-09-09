@@ -1,6 +1,6 @@
 
 
-
+import gql from 'graphql-tag'
 
 
 <script setup lang="ts">
@@ -27,19 +27,33 @@ const movie = computed<Movie>(
 
   <div class="consensus details">
     <div class="outer_ring">
-      <div class="user_score_chart" :data-percent="movie.voteAverage" data-track-color="#204529" data-bar-color="#21d07a">
+      <div class="user_score_chart" :data-percent="Math.floor(movie.voteAverage*10)" data-track-color="#204529" data-bar-color="#21d07a">
         <div class="percent">
-          <span class="icon icon-r74"></span>
+          <span class="icon icon-r74">
+             <h3>{{Math.floor(movie.voteAverage*10)}}</h3>
+
+          </span>
         </div>
         <canvas height="75" width="75" style="height: 60px; width: 60px;"></canvas>
       </div>
     </div>
   </div>
-
+<!--
+  <div class="consensus details">
+    <div class="outer_ring">
+      <div class="user_score_chart" data-percent="74.0" data-track-color="#204529" data-bar-color="#21d07a">
+        <div class="percent">
+          <span class="icon icon-r74"></span>
+        </div>
+        <canvas height="75" width="75" style="height: 60px; width: 60px;"></canvas></div>
+    </div>
+  </div>
+-->
 </template>
 <style>
 
     div.consensus {
+      z-index: 9;
       width: 68px;
       height: 68px;
       display: inline-block;
@@ -67,10 +81,11 @@ const movie = computed<Movie>(
     div.consensus .user_score_chart .percent {
       width: 100%;
       height: 100%;
-      z-index: 2;
+      z-index: 3;
       display: flex;
       align-items: center;
       justify-content: center;
+      color: #fff;
     }
 
     [class^="icon-"], [class*=" icon-"] {
@@ -84,5 +99,15 @@ const movie = computed<Movie>(
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
+    .icon-r74:before {
+      :content: data-percent;
+    }
+
+    div.consensus .user_score_chart .percent .icon {
+      color: #fff;
+    }
+
+
+
 
 </style>

@@ -7,11 +7,7 @@ import { computed , ref} from "vue";
 import { NOW_PLAYING } from "../graphql-operations";
 import MoviePoster from "@/views/MoviePoster.vue";
 const nowPlayingQuery = useQuery(NOW_PLAYING);
-/*
-const movies = computed<Movie[]>(
-    () => nowPlayingQuery.result?.value?.nowPlaying ?? []
-);
-*/
+
 
 const search = ref("");
 
