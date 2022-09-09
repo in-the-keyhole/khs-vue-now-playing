@@ -34,8 +34,10 @@ img {
   transform-origin: top center;
 }
 
-div.poster-container{
+div.poster-container:hover{
 
+  transform: scale(1.25);
+  transform-origin: top center;
 }
 
 Rating {

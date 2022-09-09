@@ -59,6 +59,7 @@ const movie = computed<Movie>(
       display: marker;
       transition: transform .2s;
       transform: scale(1);
+      position: absolute;
     }
 
     div.consensus div.outer_ring {
