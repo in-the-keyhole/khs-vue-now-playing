@@ -29,16 +29,11 @@ img {
   transition: all .2s ease-in-out;
 }
 
-/*
-.movie-poster:hover {
-  transform: scale(1.25);
-  transform-origin: top center;
-}
-*/
 div.poster-container:hover {
 
   transform: scale(1.25);
   transform-origin: top center;
+  z-index: 100 !important;
 }
 
 .Rating {
