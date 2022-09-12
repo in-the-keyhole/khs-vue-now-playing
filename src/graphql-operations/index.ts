@@ -1,4 +1,4 @@
-import { gql } from "graphql-tag";
+import {gql} from "graphql-tag";
 
 export const NOW_PLAYING = gql`
   query NowPlaying {
@@ -11,8 +11,7 @@ export const NOW_PLAYING = gql`
   }
 `;
 
-export const MOVIE_QUERY = gql
-    `query movie($id: ID!) {
+export const MOVIE_QUERY = gql`query movie($id: ID!) {
         movie(id: $id) {
           id
           title

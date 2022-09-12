@@ -1,6 +1,4 @@
-
 <script lang="ts">
-
 
 
 </script>
@@ -16,7 +14,7 @@
     <RouterLink to="/about">About</RouterLink>
     <RouterLink to="/nowPlaying">NowPlaying</RouterLink>
   </nav>-->
-  <RouterView />
+  <RouterView/>
 
 </template>
 

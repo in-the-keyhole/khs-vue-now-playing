@@ -1,12 +1,12 @@
-import { createApp, provide, h } from 'vue'
-import { DefaultApolloClient } from '@vue/apollo-composable'
+import {createApp, provide, h} from 'vue'
+import {DefaultApolloClient} from '@vue/apollo-composable'
 import App from './App.vue'
 import router from './router'
-import { apolloClient } from './apollo-client'
+import {apolloClient} from './apollo-client'
 
 
 const app = createApp({
-    setup () {
+    setup() {
         provide(DefaultApolloClient, apolloClient)
     },
 

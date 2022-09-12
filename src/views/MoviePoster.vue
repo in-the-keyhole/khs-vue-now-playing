@@ -1,10 +1,10 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import Rating from "@/views/Rating.vue";
 
 
 const props = defineProps({
-  posterPath: { type: String, required: true },
-  id : {type: Number, required : true}
+  posterPath: {type: String, required: true},
+  id: {type: Number, required: true}
 })
 
 </script>
@@ -13,7 +13,7 @@ const props = defineProps({
   <div class="poster-container">
     <RouterLink :to="'/movie/' + id">
       <Rating :id="props.id" class="position-absolute top-0 start-100 translate-middle"/>
-      <img className="movie-poster" :src="posterPath"/>
+      <img :src="posterPath" className="movie-poster"/>
     </RouterLink>
   </div>
 </template>
@@ -29,21 +29,21 @@ img {
   transition: all .2s ease-in-out;
 }
 
+/*
 .movie-poster:hover {
   transform: scale(1.25);
   transform-origin: top center;
 }
-
-div.poster-container:hover{
+*/
+div.poster-container:hover {
 
   transform: scale(1.25);
   transform-origin: top center;
 }
 
-Rating {
-  position: relative;
+.Rating {
+  position: absolute;
 }
-
 
 
 </style>

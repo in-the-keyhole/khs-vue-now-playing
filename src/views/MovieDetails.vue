@@ -1,13 +1,11 @@
+<script lang="ts" setup>
+
+import type {Movie} from "@/models";
 
 
-<script setup lang="ts">
-
-import type { Movie } from "@/models";
-
-
-import { useQuery } from "@vue/apollo-composable";
-import { computed } from "vue";
-import { MOVIE_QUERY } from "../graphql-operations";
+import {useQuery} from "@vue/apollo-composable";
+import {computed} from "vue";
+import {MOVIE_QUERY} from "../graphql-operations";
 import {useRoute} from "vue-router";
 
 
@@ -23,7 +21,7 @@ const movie = computed<Movie>(
 
 
   <div className="movie-detail">
-    <h3>{{movie.overview}}</h3>
+    <h3>{{ movie.overview }}</h3>
     <img :src=movie.backdropPathW1280>
     <a href="/"><span className="close"></span></a>
   </div>

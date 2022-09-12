@@ -1,11 +1,12 @@
 import gql from 'graphql-tag'
 
-<script setup lang="ts">
-import type { Movie } from "@/models";
-import { useQuery } from "@vue/apollo-composable";
-import { computed , ref} from "vue";
-import { NOW_PLAYING } from "../graphql-operations";
+<script lang="ts" setup>
+import type {Movie} from "@/models";
+import {useQuery} from "@vue/apollo-composable";
+import {computed, ref} from "vue";
+import {NOW_PLAYING} from "../graphql-operations";
 import MoviePoster from "@/views/MoviePoster.vue";
+
 const nowPlayingQuery = useQuery(NOW_PLAYING);
 
 
@@ -20,13 +21,13 @@ const filtered = computed<Movie[]>(() => {
 </script>
 
 <template>
-    <div class="movie-container" >
-      <h2>Now Playing</h2>
-        <input type="text"  v-model="search" placeholder="Filter by title.."/>
-        <ul>
-            <MoviePoster v-for="movie in filtered" :posterPath="movie.posterPath" :id="movie.id" />
-        </ul>
-    </div>
+  <div class="movie-container">
+    <h2>Now Playing</h2>
+    <input v-model="search" placeholder="Filter by title.." type="text"/>
+    <ul>
+      <MoviePoster v-for="movie in filtered" :id="movie.id" :posterPath="movie.posterPath"/>
+    </ul>
+  </div>
 </template>
 
 
