@@ -56,7 +56,7 @@ const movie = computed<Movie>(
 }
 
 .movie-detail h4 {
-  position: absolute;
+  position: relative;
   left: 50px;
   bottom: 25px;
 }
