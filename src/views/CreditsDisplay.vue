@@ -8,14 +8,14 @@ import type {Cast} from "@/models";
 const props = defineProps({
   id: {type: Number, required: true},
   name: {type: String, required: true},
-  character: {type: String, required: true}
-
+  character: {type: String, required: true},
+  profilePath: {type: String, required: true}
 })
-console.log(props.name);
+
 </script>
 <template>
-  <span><h4>{{props.name}}</h4></span>
-  <span></span>
+  <h4>{{props.name}}</h4>
+  <img :src="profilePath"/>
   <h4>{{props.character}}</h4>
 
 </template>

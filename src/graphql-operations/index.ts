@@ -24,6 +24,7 @@ export const MOVIE_QUERY = gql`query movie($id: ID!) {
                     id
                     name
                     character
+                    profilePath
                 }
             }
           }

@@ -28,7 +28,7 @@ const movie = computed<Movie>(
     <a href="/"><span className="close"></span></a>
     <div class="credits-container">
       <ul>
-        <CreditsDisplay v-for="Cast in movie.credits.cast" :id="Cast.id" :name="Cast.name" :character="Cast.character"/>
+        <CreditsDisplay v-for="Cast in movie.credits.cast" :id="Cast.id" :name="Cast.name" :character="Cast.character" :profilePath="Cast.profilePath"/>
       </ul>
     </div>
   </div>
