@@ -7,7 +7,7 @@ import {useQuery} from "@vue/apollo-composable";
 import {computed} from "vue";
 import {MOVIE_QUERY} from "../graphql-operations";
 import {useRoute} from "vue-router";
-
+import {Credits} from "@/views/Credits.vue";
 
 const route = useRoute();
 const movieSearchQuery = useQuery(MOVIE_QUERY, {id: route.params.id});
@@ -22,6 +22,8 @@ const movie = computed<Movie>(
 
   <div className="movie-detail">
     <h3>{{ movie.overview }}</h3>
+
+
     <img :src=movie.backdropPathW1280>
     <a href="/"><span className="close"></span></a>
   </div>

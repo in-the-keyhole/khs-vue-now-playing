@@ -19,5 +19,12 @@ export const MOVIE_QUERY = gql`query movie($id: ID!) {
           posterPath
           backdropPathW1280
           voteAverage
+          credits{
+                cast{
+                    id
+                    name
+                    character
+                }
+            }
           }
       }`;
