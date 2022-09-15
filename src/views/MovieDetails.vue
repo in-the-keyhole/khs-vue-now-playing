@@ -1,13 +1,14 @@
 <script lang="ts" setup>
 
 import type {Movie} from "@/models";
-
+import type {Credits} from "@/models";
+import type {Cast} from "@/models";
 
 import {useQuery} from "@vue/apollo-composable";
 import {computed} from "vue";
 import {MOVIE_QUERY} from "../graphql-operations";
 import {useRoute} from "vue-router";
-import {Credits} from "@/views/Credits.vue";
+import CreditsDisplay from "@/views/CreditsDisplay.vue";
 
 const route = useRoute();
 const movieSearchQuery = useQuery(MOVIE_QUERY, {id: route.params.id});
@@ -15,6 +16,7 @@ const movieSearchQuery = useQuery(MOVIE_QUERY, {id: route.params.id});
 const movie = computed<Movie>(
     () => movieSearchQuery.result?.value?.movie ?? []
 );
+
 </script>
 
 <template>
@@ -22,10 +24,13 @@ const movie = computed<Movie>(
 
   <div className="movie-detail">
     <h3>{{ movie.overview }}</h3>
-
-
     <img :src=movie.backdropPathW1280>
     <a href="/"><span className="close"></span></a>
+    <div class="credits-container">
+      <ul>
+        <CreditsDisplay v-for="Cast in movie.credits.cast" :id="Cast.id" :name="Cast.name" :character="Cast.character"/>
+      </ul>
+    </div>
   </div>
 
 </template>
@@ -63,6 +68,21 @@ const movie = computed<Movie>(
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 2em;
   cursor: pointer;
+}
+
+
+.credits-container ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  flex-flow: row wrap;
 }
 
 .close {
