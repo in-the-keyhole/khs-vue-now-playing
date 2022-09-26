@@ -2,13 +2,14 @@
 
 import type {Movie} from "@/models";
 import type {Credits} from "@/models";
-import type {Cast} from "@/models";
+import type {CastMember} from "@/models";
 
 import {useQuery} from "@vue/apollo-composable";
 import {computed} from "vue";
 import {MOVIE_QUERY} from "../graphql-operations";
 import {useRoute} from "vue-router";
 import CreditsDisplay from "@/views/CreditsDisplay.vue";
+import moment, {Duration} from "moment";
 
 const route = useRoute();
 const movieSearchQuery = useQuery(MOVIE_QUERY, {id: route.params.id});
@@ -16,7 +17,21 @@ const movieSearchQuery = useQuery(MOVIE_QUERY, {id: route.params.id});
 const movie = computed<Movie>(
     () => movieSearchQuery.result?.value?.movie ?? []
 );
+const runtimeDuration = computed<Duration | undefined>(
+    () => movie.value.runtime ? moment.duration(movie.value.runtime, 'minutes') : undefined
+);
+/*
+const genres = computed<Duration | undefined>(
+    () => movie.value.genres.
+);
+*/
+//const genres = movie.value.genres.map(genre => genre).join(', ');
 
+//console.log(runtimeDuration);
+/*
+const goBack = () => {
+  this.$router.go(-1);
+}*/
 </script>
 
 <template>
@@ -24,107 +39,48 @@ const movie = computed<Movie>(
 
   <div className="movie-detail">
     <h3>{{ movie.overview }}</h3>
-    <img :src=movie.backdropPathW1280>
+    <img :src=movie.images.backdropPathW1280>
     <a href="/"><span className="close"></span></a>
-    <div class="credits-container">
-      <ul>
-        <CreditsDisplay v-for="Cast in movie.credits.cast" :id="Cast.id" :name="Cast.name" :character="Cast.character" :profilePath="Cast.profilePath"/>
-      </ul>
+
+    <div class="featureBody">
+      <div class="featureRow">
+        <div class="imgBox">
+          <img :src=movie.images.backdropPathW1280>
+        </div>
+
+        <div class="details">
+          <h2>{{ movie.title }}</h2>
+          <p>{{ movie.releaseDate }} - {{ movie.productionCountries.join(', ') }} - {{ movie.genres.join(', ') }} -
+            {{ runtimeDuration?.hours() }}h {{ runtimeDuration?.minutes() }}m</p>
+          <p>{{ movie.tagline }}</p>
+          <h5>Overview</h5>
+          <p>{{ movie.overview }}</p>
+        </div>
+
+      </div>
+      <hr class="hr"/>
+      <div class="cast">
+        <h5>Top Billed Cast</h5>
+        <CreditsDisplay v-for="CastMember in movie.credits.cast" :cast-member="CastMember"/>
+
+        <!--:id="CastMember.id" :character="CastMember.character"
+                        :name="CastMember.name"
+                        :profilePath="CastMember.profilePath"--->
+      </div>
     </div>
   </div>
+  <div class="backBtn" @click="$router.go(-1)">
+    <!--<a alt="Back Button" >-->
+    <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+      <path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" fill="currentColor"/>
+    </svg>
+    <!-- </a>-->
+  </div>
+
 
 </template>
 <style scoped>
-
-.movie-detail img {
-  width: 100%;
+.backBtn{
+  color: #ffffff;
 }
-
-.movie-detail h3 {
-  position: absolute;
-  margin: 0px;
-  bottom: 0px;
-  width: 100%;
-  padding: 5em 0em 1em 1em;
-  background-image: linear-gradient(
-      to top,
-      rgba(0, 0, 0, 0.6) 10%,
-      rgba(0, 0, 0, 0.4) 20%,
-      rgba(0, 0, 0, 0.2) 60%,
-      rgba(0, 0, 0, 0) 100%
-  );
-}
-
-.movie-detail h4 {
-  position: relative;
-  left: 50px;
-  bottom: 25px;
-}
-
-.movie-detail span {
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 2em;
-  cursor: pointer;
-}
-
-
-.credits-container ul {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-
-  flex-flow: row wrap;
-}
-
-.close {
-  position: relative;
-  display: inline-block;
-  width: 50px;
-  height: 50px;
-  overflow: hidden;
-}
-
-.close::before {
-  -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  -o-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-
-.close::after {
-  -webkit-transform: rotate(-45deg);
-  -moz-transform: rotate(-45deg);
-  -ms-transform: rotate(-45deg);
-  -o-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-}
-
-.close::before,
-.close::after {
-  content: '';
-  position: absolute;
-  height: 4px;
-  width: 100%;
-  top: 50%;
-  left: 0;
-  margin-top: -2px;
-  background: #fff;
-  border-radius: 5px;
-}
-
-.close:hover::before,
-.close:hover::after {
-  background: #1ebcc5;
-}
-
 </style>
