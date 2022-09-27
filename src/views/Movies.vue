@@ -34,13 +34,10 @@ const filtered = computed<MovieSummary[]>(() => {
     </button>
   </div>
   <div class="homeBody">
-
-
-    <MoviePoster v-for="movie in filtered" :id="movie.id" :posterPath="movie.images.posterPathW185" :releaseDate="movie.releaseDate"
+    <MoviePoster v-for="movie in filtered" :id="movie.id" :posterPath="movie.images.posterPathW185"
+                 :releaseDate="movie.releaseDate"
                  :title="movie.title"/>
-
   </div>
-
 
 </template>
 

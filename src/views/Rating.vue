@@ -31,17 +31,6 @@ const movie = computed<Movie>(
       </div>
     </div>
   </div>
-  <!--
-    <div class="consensus details">
-      <div class="outer_ring">
-        <div class="user_score_chart" data-percent="74.0" data-track-color="#204529" data-bar-color="#21d07a">
-          <div class="percent">
-            <span class="icon icon-r74"></span>
-          </div>
-          <canvas height="75" width="75" style="height: 60px; width: 60px;"></canvas></div>
-      </div>
-    </div>
-  -->
 </template>
 <style>
 

@@ -8,7 +8,6 @@ export default {
 }
 </script>
 <template>
-
   <Header/>
   <Content/>
   <Footer/>

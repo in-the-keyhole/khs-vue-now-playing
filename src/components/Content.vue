@@ -7,7 +7,6 @@
 <RouterView/>
   </div>
 
-
 </template>
 
 <script>
