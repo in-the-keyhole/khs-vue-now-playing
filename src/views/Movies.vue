@@ -10,11 +10,11 @@ import MoviePoster from "@/views/MoviePoster.vue";
 const nowPlayingQuery = useQuery(NOW_PLAYING);
 
 
-const search = ref("");
+const searchFilter = ref("");
 
 const filtered = computed<MovieSummary[]>(() => {
   return nowPlayingQuery.result?.value?.nowPlaying.filter((movies: MovieSummary) => {
-    return movies.title.toLowerCase().includes(search.value.toLowerCase());
+    return movies.title.toLowerCase().includes(searchFilter.value.toLowerCase());
   });
 });
 
@@ -24,7 +24,7 @@ const filtered = computed<MovieSummary[]>(() => {
 
   <div class="search">
     <label for="search" hidden>Search</label>
-    <input name="search" placeholder="" type="search">
+    <input name="search" type="text"  v-model="searchFilter" placeholder=""/>
     <button>
       <svg style="width:24px;height:24px" viewBox="0 0 24 24">
         <path
