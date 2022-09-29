@@ -7,7 +7,8 @@ import {computed} from "vue";
 import {MOVIE_QUERY} from "../graphql-operations";
 import {useRoute} from "vue-router";
 import CreditsDisplay from "@/views/CreditsDisplay.vue";
-import moment, {Duration} from "moment";
+import moment from "moment";
+import type {Duration} from "moment";
 
 const route = useRoute();
 const movieSearchQuery = useQuery(MOVIE_QUERY, {id: route.params.id});
@@ -19,7 +20,7 @@ const runtimeDuration = computed<Duration | undefined>(
     () => movie.value.runtime ? moment.duration(movie.value.runtime, 'minutes') : undefined
 );
 
-const posterPath = computed<String | undefined>(
+const posterPath = computed<string | undefined>(
     () => movie.value.images.posterPath
 );
 </script>

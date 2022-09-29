@@ -2,6 +2,7 @@ import gql from 'graphql-tag'
 <script lang="ts" setup>
 import type {CastMember} from "@/models";
 import MissingCastMember from '../missing-cast.svg';
+import {computed} from "vue";
 
 const props = defineProps({
   castMember: {
@@ -13,16 +14,16 @@ const props = defineProps({
     required: true
   }
 })
-//
-// if(props.castMember?.profilePath == undefined){
-//   props.castMember?.profilePath = MissingCastMember;
-// }
+const profilePath = computed<string | undefined>(
+    () => props.castMember.profilePath ? props.castMember.profilePath: MissingCastMember
+);
+
 
 </script>
 <template>
   <div class="castCard">
     <a href="#">
-      <img :src="castMember.profilePath"/>
+      <img :src="profilePath"/>
       <h6>{{ props.castMember.name }}</h6>
       <p>{{ props.castMember.character }}</p>
     </a>
