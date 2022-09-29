@@ -1,7 +1,7 @@
 import gql from 'graphql-tag'
 <script lang="ts" setup>
 import type {CastMember} from "@/models";
-
+import MissingCastMember from '../missing-cast.svg';
 
 const props = defineProps({
   castMember: {
@@ -13,6 +13,10 @@ const props = defineProps({
     required: true
   }
 })
+//
+// if(props.castMember?.profilePath == undefined){
+//   props.castMember?.profilePath = MissingCastMember;
+// }
 
 </script>
 <template>
