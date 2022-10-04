@@ -32,13 +32,13 @@ const posterPath = computed<string | undefined>(
     <div class="featureBody">
       <div class="featureRow">
         <div class="imgBox">
-          <img :src=posterPath>
+          <img :src= movie?.images?.posterPath />
         </div>
 
         <div class="details">
           <h2>{{ movie.title }}</h2>
           <p>{{ moment(movie.releaseDate).format('MMM DD, yyyy') }} ({{ movie.productionCountries.join(', ') }}) -
-            {{ movie.genres.join(', ') }} -
+            {{ movie?.genres?.join(', ') }} -
             {{ runtimeDuration?.hours() }}h {{ runtimeDuration?.minutes() }}m</p>
           <p>{{ movie.tagline }}</p>
           <h5>Overview</h5>
